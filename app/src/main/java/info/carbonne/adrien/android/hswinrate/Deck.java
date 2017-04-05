@@ -9,6 +9,20 @@ public class Deck implements Serializable {
     public int Won;
     public int Lost;
 
+    @Override
+    public String toString() {
+        return Name + " " + getWinRateText();
+    }
+
+    public String getWinRateText() {
+        Double winrate = getWinrate();
+        String winratetext = "No stats yet";
+        if (winrate != null) {
+            winratetext = Double.toString(winrate) + "% (" + Won + "-" + Lost + ")";
+        }
+        return winratetext;
+    }
+
     public Double getWinrate() {
         Double winrate = null;
         if (Won + Lost > 0) {

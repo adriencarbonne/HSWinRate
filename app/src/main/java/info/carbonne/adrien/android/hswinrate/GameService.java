@@ -62,21 +62,13 @@ public class GameService extends Service {
         exitIntent.setAction(Constants.ACTION.EXIT_ACTION);
         PendingIntent exitPendingIntent = PendingIntent.getService(this, 0, exitIntent, 0);
 
-        //Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
-
-        Double winrate = deck.getWinrate();
-        String winratetext = "No stats yet";
-        if (winrate != null) {
-            winratetext = Double.toString(winrate) + "% (" + deck.Won + "-" + deck.Lost + ")";
-        }
-        String title = getText(R.string.notification_title) + ": " + deck.Name + " " + winratetext;
+        String title = getText(R.string.notification_title) + ": " + deck.toString();
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle(title)
                 .setTicker(title)
                 .setContentText(getText(R.string.notification_message))
                 .setSmallIcon(R.drawable.notification_icon)
-                //.setLargeIcon(Bitmap.createScaledBitmap(icon, 128, 128, false))
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
                 .setPriority(Notification.PRIORITY_MAX)
@@ -96,19 +88,6 @@ public class GameService extends Service {
     public void onCreate() {
         // Called by the system when the service is first created.
         super.onCreate();
-
-//        Intent notificationIntent = new Intent(this, GameService.class);
-//        PendingIntent defaultPendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-//        PendingIntent winPendingIntent = PendingIntent.getService(this, 0, notificationIntent, 0);
-//        Notification.Action actionWin = new Notification.Action.Builder(R.drawable.notification_icon, "Win", winPendingIntent).build();
-//        Notification notification = new Notification.Builder(this)
-//                .setContentTitle(getText(R.string.notification_title))
-//                .setContentText(getText(R.string.notification_message))
-//                .setSmallIcon(R.drawable.notification_icon)
-//                .setContentIntent(defaultPendingIntent)
-//                .addAction(actionWin)
-//                .build();
-//        startForeground(ONGOING_NOTIFICATION_ID, notification);
     }
 
     @Override

@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -26,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Data data = Data.read(this);
+        ArrayAdapter<Deck> adapter = new ArrayAdapter<Deck>(this, android.R.layout.simple_list_item_1, data.Decks);
+        ListView listView = (ListView) findViewById(R.id.listDecks);
+        listView.setAdapter(adapter);
 
         Intent startIntent = new Intent(this, GameService.class);
         startIntent.setAction(Constants.ACTION.STARTFOREGROUND_ACTION);
