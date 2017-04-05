@@ -14,4 +14,8 @@ public class Constants {
     public interface NOTIFICATION_ID {
         public static int ONGOING_NOTIFICATION_ID = 777;
     }
+
+    public interface DATA {
+        public static String FILENAME = "data";
+    }
 }
